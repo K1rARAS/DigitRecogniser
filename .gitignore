@@ -1,0 +1,38 @@
+# Кэши и байт-код Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Виртуальные окружения
+.venv/
+venv/
+env/
+
+# Сборка PyInstaller
+build/
+dist/
+*.spec
+
+# Модели и данные (если они только локальные, не для репозитория)
+# Раскомментируй, если не хочешь хранить модели в Git
+# modelAIV1.pkl
+*.pth
+data/
+images/
+train/
+ImagesForAI/
+# Логи и временные файлы
+*.log
+tmp/
+temp/
+
+# IDE и редакторы
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Системные файлы ОС
+.DS_Store
+Thumbs.db
