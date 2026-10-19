@@ -26,7 +26,7 @@ ImagesForAI/
 *.log
 tmp/
 temp/
-
+*.png
 # IDE и редакторы
 .idea/
 .vscode/
