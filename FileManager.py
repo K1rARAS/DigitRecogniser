@@ -51,4 +51,3 @@ class FileM:
         with path.open("rb") as f:
             data = load(f)
             return data
-FileM()
