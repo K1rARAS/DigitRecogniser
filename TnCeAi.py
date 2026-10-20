@@ -4,13 +4,13 @@ from AiManager import AiM, Layer, Network
 AiM = AiM()
 neyro = Network([784, 128, 32, 10])# создание нейросети
 lr = 0.1# изм при обучении
-epochs = 10# кол-во проходов
+epochs =20# кол-во проходов
 print("Обучение")
 for epoch in range(epochs):
     total_loss = 0
     count = 0
     l_data = AiM.load_data_tn()
-    if epoch%5==0:
+    if epoch%10==0:
         lr/=2.0# yield value, res
     for val, res in l_data:
         predict = neyro.forward(val)
@@ -34,7 +34,7 @@ for numt in range(1):
         l = AiM.error(pred, r)
         t_l += l
         count+=1
-        if nums[pred.index(max(pred))] == nums[r.index(max(r))]:
+        if pred.index(max(pred)) == r.index(max(r)):
             correct += 1
 
     accuracy = correct/count if count>0 else 0.0

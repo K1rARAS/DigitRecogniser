@@ -2,6 +2,7 @@ from FileManager import FileM
 from PhotoManager import PhotoM
 from threading import Thread
 from time import sleep
+from math import e
 from AiManager import AiM, Layer, Network
 from pathlib import Path
 import os, sys
@@ -124,3 +125,9 @@ class GUI:
             os.system("cls")
         else:
             os.system("clear")
+    def softmax(self, target:list)->list:
+        result = []
+        summary = sum(e**i for i in target)
+        for item in target:
+            result.append(item/summary)
+        return result
