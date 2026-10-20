@@ -1,14 +1,16 @@
 from FileManager import FileM
 from AiManager import AiM, Layer, Network
+
+AiM = AiM()
 neyro = Network([784, 128, 32, 10])# создание нейросети
 lr = 0.1# изм при обучении
-epochs = 80# кол-во проходов
+epochs = 10# кол-во проходов
 print("Обучение")
 for epoch in range(epochs):
     total_loss = 0
     count = 0
     l_data = AiM.load_data_tn()
-    if epoch%20==0:
+    if epoch%5==0:
         lr/=2.0# yield value, res
     for val, res in l_data:
         predict = neyro.forward(val)

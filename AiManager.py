@@ -60,6 +60,7 @@ class AiM:
 
 class Layer:
     def __init__(self, n_in, n_out):
+        self.AiM = AiM()
         scale = sqrt(2.0/n_in) # небольшая оптимизация иначе комп зависнет так много считать надо
         self.matrix = [[uniform(-scale,scale) for _ in range(n_in)] for _ in range(n_out)] # создание слоя матрица строки вход столбцы выход
         self.bias = [uniform(-scale,scale) for _ in range(n_out)] # смещение для контроля
@@ -71,11 +72,12 @@ class Layer:
         for row, b in zip(self.matrix, self.bias): # берем строку слоя и смещение
             z = sum(w*m for w, m in zip(row, inp)) + b # выход нейрона(сумматор) сумма всех весов на данные + смещение
             self.last_z.append(z) # сохранение исходных значений сумматора
-            output.append(AiM.sigmoid(z)) # приведение выхода к значениям в пределах от 0 до 1
+            output.append(self.AiM.sigmoid(z)) # приведение выхода к значениям в пределах от 0 до 1
         return output
 
 class Network:
-    def __init__(self, size): # допустим 2, 4, 1
+    def __init__(self, size):
+        self.AiM = AiM()# допустим 2, 4, 1
         self.layers = []
         for n_in, n_out in zip(size[:-1],size[1:]): # тогда список из [(2,4), (4,1)]
             self.layers.append(Layer(n_in, n_out)) # сохранение слоев
@@ -102,7 +104,7 @@ class Network:
             layer_next = self.layers[L + 1] # [4, 3, 2, 1]
             layer_cur = self.layers[L] # [3, 2, 1, 0]
             d_next = deltas[L + 1] # [4, 3, 2, 1]
-            a_cur = [AiM.sigmoid(z) for z in layer_cur.last_z] # выравнивание для исходных значений в пределах (0, 1)
+            a_cur = [self.AiM.sigmoid(z) for z in layer_cur.last_z] # выравнивание для исходных значений в пределах (0, 1)
 
             d_cur = [] # искомые влияние ошибки на ошибки
 
