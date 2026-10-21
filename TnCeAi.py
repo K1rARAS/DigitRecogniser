@@ -24,6 +24,7 @@ for epoch in range(epochs):
 
 print("Тесты")
 nums = [0,1,2,3,4,5,6,7,8,9]
+
 for numt in range(1):
     tests = AiM.load_data_tt()
     correct = 0

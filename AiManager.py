@@ -18,7 +18,7 @@ class AiM:
         mark = float(len(target) / 10) * 0.8
         for pathl in target:
             path = Path(pathl)
-            if int(path.stem[2:3]) <= int(mark):
+            if int(path.stem[2:4]) <= int(mark):
                 train_base.append(pathl)
             else:
                 test_base.append(pathl)
