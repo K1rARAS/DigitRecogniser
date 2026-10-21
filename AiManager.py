@@ -37,10 +37,47 @@ class AiM:
             result = [0.0] * 10
             img = pm.get_image(path)
             massive = img
+            double = self.multyplytwo(massive)
+            third = self.multyplythree(massive)
+            four = self.multiplyfour(massive)
+            five = self.multiplyfive(massive)
             value = massive
             result[answer] = 1.0
-            yield value, result
+            for res in [value, double, third, four, five]:
+                yield res, result
+    def multiplyfour(self, target: list):
+        result = []
+        for mark in range(0, len(target), 28):
+            result.append(target[mark: mark+28])
+        answer = result[-2:]+result[:26]
+        flat = [x for y in answer for x in y]
+        return flat
 
+    def multiplyfive(self, target: list):
+        result = []
+        for mark in range(0, len(target), 28):
+            result.append(target[mark: mark + 28])
+        answer = result[2:] + result[:2]
+        flat = [x for y in answer for x in y]
+        return flat
+
+
+    def multyplytwo(self, target: list):
+        mult = []
+        for mark in range(0, len(target), 28):
+            tmp = target[mark:28+mark]
+            mult.append(tmp[-2:])
+            mult.append(tmp[:26])
+        flat = [x for y in mult for x in y]
+        return flat
+    def multyplythree(self, target:list):
+        mult = []
+        for mark in range(0, len(target), 28):
+            tmp = target[mark:28 + mark]
+            mult.append(tmp[2:])
+            mult.append(tmp[:2])
+        flat = [x for y in mult for x in y]
+        return flat
     def load_data_tt(self):
         fm = FileM()
         pm = PhotoM()

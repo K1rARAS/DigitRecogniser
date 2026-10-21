@@ -30,6 +30,7 @@ class GUI:
         else:
             print("Модель не загружена часть функций недоступна")
         print("Запуск меню...")
+        sleep(1)
         self.advice()
     def load(self):
         self.neyro = self.fm.load_AI()
@@ -118,6 +119,7 @@ class GUI:
         sleep(3)
         self.printer(pp)
         input("enter...")
+        self.main_menu()
     def exit(self):
         sys.exit()
     def clear(self):
